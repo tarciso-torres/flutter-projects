@@ -38,6 +38,10 @@ class LoginScreenState extends State<LoginScreen> {
       validator: (value) {
         // return null if valid
         // otherwise string (with the error message) if invalid
+        if(!value.contains('@')){
+          return 'Please check your email';
+        }
+        return null;
       },
     );
   }
@@ -49,6 +53,12 @@ class LoginScreenState extends State<LoginScreen> {
           labelText: 'Password',
           hintText: 'Password',
         ),
+        validator: (value) {
+          if(value.length < 4) {
+            return 'Passoword most be at least 4 characters.';
+          }
+          return  null;
+        },
     );
   }
 
@@ -57,7 +67,10 @@ class LoginScreenState extends State<LoginScreen> {
       color: Colors.blue,
       child: Text('Submit'),
       onPressed: (){
-        formKey.currentState.reset();
+        formKey.currentState.validate();
+        if(formKey.currentState.validate()){
+          formKey.currentState.reset();
+        }
       },
     );
   }
