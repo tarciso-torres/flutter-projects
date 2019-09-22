@@ -35,6 +35,10 @@ class LoginScreenState extends State<LoginScreen> {
         labelText: 'Email Adress',
         hintText: 'you@example.com',
       ),
+      validator: (value) {
+        // return null if valid
+        // otherwise string (with the error message) if invalid
+      },
     );
   }
 
@@ -52,7 +56,9 @@ class LoginScreenState extends State<LoginScreen> {
     return RaisedButton(
       color: Colors.blue,
       child: Text('Submit'),
-      onPressed: (){},
+      onPressed: (){
+        formKey.currentState.reset();
+      },
     );
   }
 }
