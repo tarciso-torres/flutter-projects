@@ -11,6 +11,9 @@ class LoginScreenState extends State<LoginScreen> {
 
   final formKey = GlobalKey<FormState>();
 
+  String email = '';
+  String password = '';
+
   Widget build(context){
     return Container(
       margin: EdgeInsets.all(20),
@@ -43,6 +46,9 @@ class LoginScreenState extends State<LoginScreen> {
         }
         return null;
       },
+      onSaved: (String value){
+        email = value;
+      },
     );
   }
 
@@ -59,6 +65,9 @@ class LoginScreenState extends State<LoginScreen> {
           }
           return  null;
         },
+        onSaved: (String value){
+        password = value;
+      },
     );
   }
 
@@ -67,9 +76,10 @@ class LoginScreenState extends State<LoginScreen> {
       color: Colors.blue,
       child: Text('Submit'),
       onPressed: (){
-        formKey.currentState.validate();
         if(formKey.currentState.validate()){
-          formKey.currentState.reset();
+          formKey.currentState.save();
+          print('Time to post $email and $password to my API');
+          
         }
       },
     );
